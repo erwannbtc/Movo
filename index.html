@@ -532,6 +532,14 @@
             border-radius: 50%;
         }
 
+        .suggestion-avatar img[src*="office.png"],
+        .debtor-avatar-modern img[src*="office.png"],
+        .transaction-icon img[src*="office.png"] {
+            background: white;
+            padding: 3px;
+            border-radius: 50%;
+        }
+
         .suggestion-avatar img[src*="deezer.png"],
         .debtor-avatar-modern img[src*="deezer.png"],
         .transaction-icon img[src*="deezer.png"] {
@@ -8174,7 +8182,6 @@
             // 🔥 DÉBITEURS PAR DÉFAUT
             const DEFAULT_DEBTORS = [
                 { name: "Netflix", picture: "assets/debiteurs/netflix.png", category: "abonnement", isDefault: true },
-                { name: "Spotify", picture: "assets/debiteurs/spotify.png", category: "abonnement", isDefault: true },
                 { name: "Amazon", picture: "assets/debiteurs/amazon-a.png", category: "abonnement", isDefault: true, },
                 { name: "Apple", picture: "assets/debiteurs/apple.png", category: "loyer", isDefault: true },
                 { name: "Free", picture: "assets/debiteurs/free.png", category: "abonnement", isDefault: true },
@@ -8187,6 +8194,7 @@
                 { name: "Auchan", picture: "assets/debiteurs/auchan.png", category: "loyer", isDefault: true },
                 { name: "Basic Fit", picture: "assets/debiteurs/basic-fit.png", category: "loyer", isDefault: true },
                 { name: "Deezer", picture: "assets/debiteurs/deezer.png", category: "loyer", isDefault: true },
+                { name: "Spotify", picture: "assets/debiteurs/spotify-y.png", category: "abonnement", isDefault: true, },
                 { name: "Disney +", picture: "assets/debiteurs/disney+.jpeg", category: "loyer", isDefault: true },
                 { name: "Axa", picture: "assets/debiteurs/axa.png", category: "loyer", isDefault: true },
                 { name: "Burger King", picture: "assets/debiteurs/burger-king.png", category: "loyer", isDefault: true },
@@ -8197,7 +8205,7 @@
                 { name: "Fitness Park", picture: "assets/debiteurs/fitness-park.png", category: "loyer", isDefault: true },
                 { name: "Bitcoin", picture: "assets/debiteurs/bitcoin.png", category: "bitcoin", isDefault: true },
                 { name: "iCloud", picture: "assets/debiteurs/icloud.png", category: "loyer", isDefault: true },
-                { name: "KFC", picture: "assets/debiteurs/kfc.png", category: "loyer", isDefault: true },
+                { name: "KFC", picture: "assets/debiteurs/KFC-C.png", category: "loyer", isDefault: true },
                 { name: "L'Olivier", picture: "assets/debiteurs/l-olivier.png", category: "loyer", isDefault: true },
                 { name: "Intermarché", picture: "assets/debiteurs/intermarché.jpg", category: "loyer", isDefault: true },
                 { name: "Macif", picture: "assets/debiteurs/macif.png", category: "loyer", isDefault: true },
@@ -8212,6 +8220,14 @@
                 { name: "Xbox", picture: "assets/debiteurs/xbox.png", category: "loyer", isDefault: true },
                 { name: "Youtube", picture: "assets/debiteurs/youtube.png", category: "loyer", isDefault: true },
                 { name: "Google One", picture: "assets/debiteurs/google-one.png", category: "loyer", isDefault: true },
+                { name: "ADN", picture: "assets/debiteurs/adn.png", category: "loyer", isDefault: true },
+                { name: "LCL", picture: "assets/debiteurs/lcl.png", category: "loyer", isDefault: true },
+                { name: "CGR", picture: "assets/debiteurs/cgr-cinema.png", category: "loyer", isDefault: true },
+                { name: "Crunchyroll", picture: "assets/debiteurs/crunchyroll.png", category: "loyer", isDefault: true },
+                { name: "Revolut", picture: "assets/debiteurs/revolut.png", category: "loyer", isDefault: true },
+                { name: "Office", picture: "assets/debiteurs/office.png", category: "loyer", isDefault: true },
+                { name: "Ameli", picture: "assets/debiteurs/ameli.png", category: "loyer", isDefault: true },
+                { name: "Pathé", picture: "assets/debiteurs/pathé.png", category: "loyer", isDefault: true },
                 { name: "Engie", picture: "assets/debiteurs/engie.png", category: "loyer", isDefault: true }
             ];
 
