@@ -5275,6 +5275,376 @@
             background: var(--text-secondary);
             opacity: 0.3;
         }
+
+        /* 🔥 SLIDE-UP TRANSACTION PAGE - Modern iOS Style */
+        .slide-up-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 10001;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .slide-up-page.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .slide-up-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-height: 95vh;
+            background: linear-gradient(180deg, #1c1c1e 0%, #141416 100%);
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide-up-page.active .slide-up-content {
+            transform: translateY(0);
+        }
+
+        /* Header */
+        .slide-up-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 20px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            background: linear-gradient(180deg, #1c1c1e 0%, rgba(28, 28, 30, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 10;
+        }
+
+        .slide-up-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .slide-up-close:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.05);
+        }
+
+        .slide-up-close:active {
+            transform: scale(0.95);
+        }
+
+        .slide-up-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        /* Modern Form */
+        .modern-form {
+            padding: 24px 20px 40px;
+        }
+
+        .form-section {
+            margin-bottom: 24px;
+        }
+
+        .modern-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modern-input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            color: white;
+            font-size: 17px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .modern-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(48, 209, 88, 0.5);
+            box-shadow: 0 0 0 4px rgba(48, 209, 88, 0.1);
+        }
+
+        .modern-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        textarea.modern-input {
+            resize: vertical;
+            min-height: 80px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .input-hint {
+            display: block;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 6px;
+        }
+
+        /* Transaction Type Selector */
+        .transaction-type-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .type-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            font-weight: 500;
+            gap: 8px;
+        }
+
+        .type-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .type-btn:active {
+            transform: translateY(0);
+        }
+
+        .type-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .type-btn.active {
+            border-color: transparent;
+            color: white;
+        }
+
+        .type-btn-income.active {
+            background: linear-gradient(135deg, #30d158 0%, #28a745 100%);
+            box-shadow: 0 8px 24px rgba(48, 209, 88, 0.4);
+        }
+
+        .type-btn-expense.active {
+            background: linear-gradient(135deg, #ff453a 0%, #d32f2f 100%);
+            box-shadow: 0 8px 24px rgba(255, 69, 58, 0.4);
+        }
+
+        .type-btn.active svg {
+            transform: scale(1.1);
+        }
+
+        /* Amount Input Special Styling */
+        .amount-input-wrapper {
+            position: relative;
+        }
+
+        .amount-input {
+            padding-right: 50px;
+            font-size: 32px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .currency-symbol {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+        }
+
+        /* Toggle Switch */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 51px;
+            height: 31px;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            border-radius: 31px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 27px;
+            width: 27px;
+            left: 0;
+            bottom: 0;
+            background: white;
+            transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background: linear-gradient(135deg, #30d158 0%, #28a745 100%);
+            border-color: transparent;
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        /* Submit Button */
+        .modern-submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #007aff 0%, #0051d5 100%);
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 32px;
+            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+        }
+
+        .modern-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 122, 255, 0.4);
+        }
+
+        .modern-submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .slide-up-content {
+                max-height: 100vh;
+                border-radius: 20px 20px 0 0;
+            }
+
+            .amount-input {
+                font-size: 28px;
+            }
+
+            .currency-symbol {
+                font-size: 20px;
+            }
+        }
+
+        /* Smooth scrolling for the form */
+        .slide-up-content {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar for the slide-up page */
+        .slide-up-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slide-up-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .slide-up-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .slide-up-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 
@@ -6256,7 +6626,7 @@
                     </div>
 
                     <!-- 🔥 BOUTON CENTRAL + -->
-                    <div class="nav-item nav-item-add" onclick="showModal('transactionModal')">
+                    <div class="nav-item nav-item-add" onclick="showAddTransactionPage()">
                         <div class="nav-icon-add">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path d="M12 5V19M5 12H19" stroke="white" stroke-width="2.5" stroke-linecap="round" />
@@ -6288,6 +6658,126 @@
                         <div class="nav-label">Actifs</div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- 🔥 ADD TRANSACTION PAGE (Slide-up) -->
+        <div id="addTransactionPage" class="slide-up-page">
+            <div class="slide-up-content">
+                <!-- Header avec bouton fermer -->
+                <div class="slide-up-header">
+                    <button class="slide-up-close" onclick="hideAddTransactionPage()">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h2 class="slide-up-title">Nouvelle Transaction</h2>
+                    <div style="width: 28px;"></div> <!-- Spacer pour centrer le titre -->
+                </div>
+
+                <!-- Formulaire -->
+                <form id="newTransactionForm" class="modern-form">
+                    <!-- Type de transaction (Revenu / Dépense) -->
+                    <div class="transaction-type-selector">
+                        <button type="button" class="type-btn type-btn-income active" onclick="selectTransactionType('income')">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Revenu</span>
+                        </button>
+                        <button type="button" class="type-btn type-btn-expense" onclick="selectTransactionType('expense')">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Dépense</span>
+                        </button>
+                    </div>
+                    <input type="hidden" id="newTransactionType" value="income">
+
+                    <!-- Montant -->
+                    <div class="form-section">
+                        <label class="modern-label">Montant</label>
+                        <div class="amount-input-wrapper">
+                            <input type="number" id="newTransactionAmount" class="modern-input amount-input" placeholder="0.00" step="0.01" required>
+                            <span class="currency-symbol">€</span>
+                        </div>
+                    </div>
+
+                    <!-- Nom de la transaction -->
+                    <div class="form-section">
+                        <label class="modern-label">Nom</label>
+                        <input type="text" id="newTransactionName" class="modern-input" placeholder="Ex: Salaire, Courses..." required>
+                    </div>
+
+                    <!-- Catégorie -->
+                    <div class="form-section">
+                        <label class="modern-label">Catégorie</label>
+                        <select id="newTransactionCategory" class="modern-input" onchange="toggleNewBitcoinQuantity()" required>
+                            <option value="">Sélectionner une catégorie</option>
+                        </select>
+                    </div>
+
+                    <!-- Quantité Bitcoin (conditionnel) -->
+                    <div class="form-section" id="newBitcoinQuantityGroup" style="display: none;">
+                        <label class="modern-label">Quantité de Bitcoin</label>
+                        <input type="number" id="newBitcoinQuantity" class="modern-input" step="0.00000001" placeholder="0.001">
+                        <small class="input-hint">Entrez la quantité de Bitcoin achetée</small>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="form-section">
+                        <label class="modern-label">Date</label>
+                        <input type="date" id="newTransactionDate" class="modern-input" required>
+                    </div>
+
+                    <!-- Toggle Récurrent -->
+                    <div class="form-section">
+                        <div class="toggle-row">
+                            <div>
+                                <label class="modern-label">Transaction récurrente</label>
+                                <small class="input-hint">Répéter automatiquement cette transaction</small>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="newTransactionRecurring" onchange="toggleNewRecurringOptions()">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Options récurrentes (conditionnel) -->
+                    <div id="newRecurringOptions" style="display: none;">
+                        <div class="form-section">
+                            <label class="modern-label">Fréquence</label>
+                            <select id="newRecurringFrequency" class="modern-input">
+                                <option value="monthly">Mensuelle</option>
+                                <option value="weekly">Hebdomadaire</option>
+                                <option value="yearly">Annuelle</option>
+                            </select>
+                        </div>
+                        <div class="form-section">
+                            <label class="modern-label">Date de début</label>
+                            <input type="date" id="newRecurringStartDate" class="modern-input">
+                        </div>
+                        <div class="form-section">
+                            <label class="modern-label">Date de fin (optionnelle)</label>
+                            <input type="date" id="newRecurringEndDate" class="modern-input">
+                        </div>
+                    </div>
+
+                    <!-- Description (optionnelle) -->
+                    <div class="form-section">
+                        <label class="modern-label">Description (optionnel)</label>
+                        <textarea id="newTransactionDescription" class="modern-input" rows="3" placeholder="Ajoutez des détails supplémentaires..."></textarea>
+                    </div>
+
+                    <!-- Bouton submit -->
+                    <button type="submit" class="modern-submit-btn">
+                        <span>Ajouter la transaction</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
 
@@ -9428,6 +9918,207 @@
                 }
             }
 
+            // 🔥 NOUVELLE PAGE DE TRANSACTION SLIDE-UP
+            function showAddTransactionPage() {
+                const page = document.getElementById('addTransactionPage');
+                if (page) {
+                    // Bloquer le scroll du body
+                    document.body.classList.add('modal-open');
+
+                    // Réinitialiser le formulaire
+                    resetNewTransactionForm();
+
+                    // Charger les catégories
+                    loadNewCategories();
+
+                    // Définir la date du jour par défaut
+                    setNewTodayDate();
+
+                    // Afficher la page avec animation
+                    page.style.display = 'flex';
+                    setTimeout(() => {
+                        page.classList.add('active');
+                    }, 10);
+                }
+            }
+
+            function hideAddTransactionPage() {
+                const page = document.getElementById('addTransactionPage');
+                if (page) {
+                    page.classList.remove('active');
+                    setTimeout(() => {
+                        page.style.display = 'none';
+                        document.body.classList.remove('modal-open');
+                    }, 500);
+                }
+            }
+
+            function selectTransactionType(type) {
+                // Mettre à jour le champ hidden
+                document.getElementById('newTransactionType').value = type;
+
+                // Mettre à jour les boutons
+                const incomeBtn = document.querySelector('.type-btn-income');
+                const expenseBtn = document.querySelector('.type-btn-expense');
+
+                if (type === 'income') {
+                    incomeBtn.classList.add('active');
+                    expenseBtn.classList.remove('active');
+                } else {
+                    expenseBtn.classList.add('active');
+                    incomeBtn.classList.remove('active');
+                }
+            }
+
+            function toggleNewBitcoinQuantity() {
+                const category = document.getElementById('newTransactionCategory').value;
+                const bitcoinGroup = document.getElementById('newBitcoinQuantityGroup');
+
+                if (category && category.toLowerCase() === 'bitcoin') {
+                    bitcoinGroup.style.display = 'block';
+                } else {
+                    bitcoinGroup.style.display = 'none';
+                    document.getElementById('newBitcoinQuantity').value = '';
+                }
+            }
+
+            function toggleNewRecurringOptions() {
+                const isRecurring = document.getElementById('newTransactionRecurring').checked;
+                const recurringOptions = document.getElementById('newRecurringOptions');
+
+                if (isRecurring) {
+                    recurringOptions.style.display = 'block';
+                    // Définir la date de début par défaut
+                    if (!document.getElementById('newRecurringStartDate').value) {
+                        document.getElementById('newRecurringStartDate').value = document.getElementById('newTransactionDate').value;
+                    }
+                } else {
+                    recurringOptions.style.display = 'none';
+                }
+            }
+
+            function loadNewCategories() {
+                const categorySelect = document.getElementById('newTransactionCategory');
+                categorySelect.innerHTML = '<option value="">Sélectionner une catégorie</option>';
+
+                appData.categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category;
+                    option.textContent = category;
+                    categorySelect.appendChild(option);
+                });
+            }
+
+            function setNewTodayDate() {
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('newTransactionDate').value = today;
+            }
+
+            function resetNewTransactionForm() {
+                // Réinitialiser le formulaire
+                document.getElementById('newTransactionForm').reset();
+
+                // Réinitialiser le type à "income"
+                document.getElementById('newTransactionType').value = 'income';
+                selectTransactionType('income');
+
+                // Cacher les options conditionnelles
+                document.getElementById('newBitcoinQuantityGroup').style.display = 'none';
+                document.getElementById('newRecurringOptions').style.display = 'none';
+                document.getElementById('newTransactionRecurring').checked = false;
+            }
+
+            function addNewTransaction() {
+                const isRecurring = document.getElementById('newTransactionRecurring').checked;
+                const category = document.getElementById('newTransactionCategory').value;
+                const type = document.getElementById('newTransactionType').value;
+                const bitcoinQuantity = category.toLowerCase() === 'bitcoin' ? parseFloat(document.getElementById('newBitcoinQuantity').value) || 0 : 0;
+
+                // Pour Bitcoin, gérer la quantité selon le type (achat/vente)
+                let actualBitcoinQuantity = 0;
+                if (category.toLowerCase() === 'bitcoin' && bitcoinQuantity > 0) {
+                    if (type === 'expense') {
+                        actualBitcoinQuantity = bitcoinQuantity;
+                    } else {
+                        actualBitcoinQuantity = -bitcoinQuantity;
+                    }
+                }
+
+                const transactionData = {
+                    name: document.getElementById('newTransactionName').value,
+                    description: document.getElementById('newTransactionDescription').value.trim() || null,
+                    amount: parseFloat(document.getElementById('newTransactionAmount').value),
+                    type: type,
+                    category: category,
+                    bitcoinQuantity: actualBitcoinQuantity,
+                    date: document.getElementById('newTransactionDate').value,
+                    recurring: isRecurring,
+                    frequency: isRecurring ? document.getElementById('newRecurringFrequency').value : null,
+                    startDate: isRecurring ? document.getElementById('newRecurringStartDate').value : null,
+                    endDate: isRecurring ? document.getElementById('newRecurringEndDate').value || null : null
+                };
+
+                // Nouvelle transaction
+                const transaction = {
+                    id: Date.now(),
+                    ...transactionData
+                };
+
+                // Ajouter le débiteur si un débiteur était sélectionné
+                if (selectedDebtor) {
+                    transaction.debtor = {
+                        name: selectedDebtor.name,
+                        picture: selectedDebtor.picture,
+                        isDefault: selectedDebtor.isDefault || false
+                    };
+
+                    if (!selectedDebtor.isDefault) {
+                        const debtor = appData.debtors.find(d => d.name === selectedDebtor.name);
+                        if (debtor) {
+                            debtor.usageCount++;
+                        }
+                    }
+
+                    selectedDebtor = null;
+                }
+
+                if (isRecurring) {
+                    addRecurringTransactions(transaction);
+                } else {
+                    appData.transactions.push(transaction);
+                }
+
+                // Sauvegarder et mettre à jour
+                saveData();
+
+                // Sync automatique (si connecté)
+                if (currentUser && supabase) {
+                    syncDataSilently();
+                }
+
+                // Mettre à jour Bitcoin si nécessaire
+                if (transactionData.category.toLowerCase() === 'bitcoin') {
+                    updateBitcoinAssetFromTransactions();
+                    if (document.querySelector('#bitcoin.active')) {
+                        displayBitcoinPage();
+                    }
+                }
+
+                // Mettre à jour l'affichage
+                updateDisplay();
+                displayRecentTransactions();
+
+                // Mettre à jour la page all-transactions si elle est active
+                if (document.querySelector('#all-transactions.active')) {
+                    displayAllTransactionsPage();
+                }
+
+                updateAnalyticsDisplay();
+
+                // Fermer la page
+                hideAddTransactionPage();
+            }
+
             // Fonction pour ajouter une transaction Bitcoin pure (sans impact euro)
             function addPureBitcoinTransaction() {
                 const type = document.getElementById('bitcoinTransactionType').value;
@@ -10851,6 +11542,25 @@
                     transactionForm.addEventListener('submit', function (e) {
                         e.preventDefault();
                         addTransaction();
+                    });
+                }
+
+                // 🔥 Event listener pour le nouveau formulaire de transaction
+                const newTransactionForm = document.getElementById('newTransactionForm');
+                if (newTransactionForm) {
+                    newTransactionForm.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        addNewTransaction();
+                    });
+                }
+
+                // 🔥 Fermer la page en cliquant sur l'overlay
+                const addTransactionPage = document.getElementById('addTransactionPage');
+                if (addTransactionPage) {
+                    addTransactionPage.addEventListener('click', function (e) {
+                        if (e.target === addTransactionPage) {
+                            hideAddTransactionPage();
+                        }
                     });
                 }
 
