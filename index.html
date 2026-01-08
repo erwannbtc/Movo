@@ -2012,68 +2012,6 @@
             transform: translateY(-1px);
         }
 
-        .sort-controls-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 12px 16px;
-            margin: 0 0 16px 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .sort-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            white-space: nowrap;
-        }
-
-        .sort-select {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 10px 14px;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            outline: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            padding-right: 36px;
-        }
-
-        .sort-select:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .sort-select:focus {
-            border-color: var(--revolut-blue);
-            box-shadow: 0 0 0 3px rgba(0, 122, 239, 0.1);
-        }
-
-        .sort-select option {
-            background: var(--revolut-dark);
-            color: var(--text-primary);
-            padding: 8px;
-        }
-
         .transaction-group {
             margin-bottom: 16px;
         }
@@ -5385,24 +5323,6 @@
                     <div class="month-pills-swipeable" id="monthPillsSwipeable"></div>
                 </div>
 
-                <!-- Sort Controls -->
-                <div class="sort-controls-container">
-                    <div class="sort-label">
-                        <svg viewBox="0 0 24 24" fill="none" style="width: 16px; height: 16px;">
-                            <path d="M3 6h18M7 12h10M11 18h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        Trier par
-                    </div>
-                    <select id="transactionSortSelect" class="sort-select" onchange="applySortToTransactions()">
-                        <option value="date-desc">Date (Plus récent)</option>
-                        <option value="date-asc">Date (Plus ancien)</option>
-                        <option value="amount-desc">Montant (Plus élevé)</option>
-                        <option value="amount-asc">Montant (Plus faible)</option>
-                        <option value="name-asc">Nom (A-Z)</option>
-                        <option value="name-desc">Nom (Z-A)</option>
-                    </select>
-                </div>
-
                 <div class="all-transactions-content" id="allTransactionsContent"
                     onscroll="handleAllTransactionsScroll()">
                     <div id="allTransactionsFiltered"></div>
@@ -7942,12 +7862,6 @@
 
                 generateMonthPills();
                 renderFilteredTransactions(currentFilteredTransactions);
-
-                // Set sort dropdown to current sort option
-                const sortSelect = document.getElementById('transactionSortSelect');
-                if (sortSelect) {
-                    sortSelect.value = currentSortOption;
-                }
             }
 
             // Générer les pills des mois
@@ -8157,12 +8071,9 @@
                     return;
                 }
 
-                // Apply sorting before grouping
-                const sortedTransactions = sortTransactions(transactions, currentSortOption);
-
                 // Grouper par date
                 const groupedTransactions = {};
-                sortedTransactions.forEach(transaction => {
+                transactions.forEach(transaction => {
                     const date = new Date(transaction.date);
                     const today = new Date();
                     const yesterday = new Date();
@@ -8222,45 +8133,6 @@
                 container.innerHTML = html;
             }
 
-            // Sort transactions based on selected option
-            function sortTransactions(transactions, sortOption) {
-                const sorted = [...transactions]; // Create a copy to avoid mutating original
-
-                switch (sortOption) {
-                    case 'date-desc': // Newest first
-                        sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
-                        break;
-                    case 'date-asc': // Oldest first
-                        sorted.sort((a, b) => new Date(a.date) - new Date(b.date));
-                        break;
-                    case 'amount-desc': // Highest first
-                        sorted.sort((a, b) => Math.abs(b.amount) - Math.abs(a.amount));
-                        break;
-                    case 'amount-asc': // Lowest first
-                        sorted.sort((a, b) => Math.abs(a.amount) - Math.abs(b.amount));
-                        break;
-                    case 'name-asc': // A-Z
-                        sorted.sort((a, b) => a.name.localeCompare(b.name, 'fr'));
-                        break;
-                    case 'name-desc': // Z-A
-                        sorted.sort((a, b) => b.name.localeCompare(a.name, 'fr'));
-                        break;
-                    default:
-                        sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
-                }
-
-                return sorted;
-            }
-
-            // Apply sort when dropdown changes
-            function applySortToTransactions() {
-                const selectElement = document.getElementById('transactionSortSelect');
-                currentSortOption = selectElement.value;
-
-                // Re-display transactions with new sort order
-                displayAllTransactionsPage();
-            }
-
             // Gérer le scroll pour afficher/masquer le sélecteur de mois
             function handleAllTransactionsScroll() {
                 const container = document.getElementById('allTransactionsContent');
@@ -8305,7 +8177,6 @@
             let headerSlideIndex = 0;
             let priceUpdateInterval = null;
             let currentBudgetDate = new Date();
-            let currentSortOption = 'date-desc'; // Default sort: newest first
 
             // Débiteurs prédéfinis
             // 🔥 DÉBITEURS PAR DÉFAUT
@@ -10940,7 +10811,6 @@
             window.filterByMonth = filterByMonth;
             window.handleAllTransactionsScroll = handleAllTransactionsScroll;
             window.displayAllTransactionsPage = displayAllTransactionsPage;
-            window.applySortToTransactions = applySortToTransactions;
             window.showModernTooltip = showModernTooltip;
             window.hideModernTooltip = hideModernTooltip;
             window.updateModernTooltipPosition = updateModernTooltipPosition;
